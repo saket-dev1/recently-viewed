@@ -1,0 +1,21 @@
+{% if template contains 'product'  %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+	let cP = "{{ product.handle }}";
+	if(getCookie('recentlyViewed') != ''){
+	  let rvProducts = getCookie('recentlyViewed');
+	  let rvProductArray = unescape(rvProducts).split(',');
+
+	  if(rvProductArray.indexOf(cP) == -1){
+		rvProductArray.push(cP);
+		setCookie("recentlyViewed", rvProductArray.join(','), 1);  
+	  }
+	}else{
+	  setCookie("recentlyViewed", cP, 1);
+	}
+
+  });
+</script>
+{% endif %}
+
+
